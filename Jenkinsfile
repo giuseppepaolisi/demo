@@ -5,12 +5,6 @@ pipeline {
         }
     }
     stages {
-            stage('Checkout') {
-                steps {
-                    sh 'echo "Checking out code..."'
-                    checkout scm
-                }
-            }
             stage('Build') {
                 steps {
                     sh 'mvn clean install'
