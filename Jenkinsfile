@@ -7,23 +7,19 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+       stage('Verify') {
             steps {
-                checkout scm
+                sh 'echo JAVA_HOME is $JAVA_HOME'
+                sh 'java -version'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean build'
+                sh 'mvn clean install'
             }
         }
 
-        stage('Package') {
-            steps {
-                sh 'mvn package -DskipTests'
-            }
-        }
     }
     
 }
