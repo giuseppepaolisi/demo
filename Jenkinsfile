@@ -16,11 +16,11 @@ pipeline {
                     sh 'mvn clean install'
                     sh 'echo "Build successful!"'
                 }
-            }
-            post {
-                always {
-                    sh 'echo "Cleaning up workspace..."'
-                    cleanWs()
+                post {
+                    always {
+                        sh 'echo "Cleaning up workspace..."'
+                        cleanWs()
+                    }
                 }
             }
     }
