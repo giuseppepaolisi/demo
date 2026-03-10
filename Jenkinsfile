@@ -22,8 +22,11 @@ pipeline {
         stage('Print') {
             steps {
                 script {
-                    sh "echo ${getProjectName}"
-                    sh "echo ${getProjectVersion}"
+                    def name = getProjectName()
+                    def version = getProjectVersion()
+                    
+                    sh "echo ${name}"
+                    sh "echo ${version}"
                 }
             }
         }
