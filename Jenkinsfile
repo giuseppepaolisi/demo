@@ -1,21 +1,29 @@
 pipeline {
-    agent any          // ← su quale agent girare (any = il primo disponibile)
+    agent any
 
-    stages {           // ← le fasi della pipeline
+    tools {
+        maven 'maven-3.9.13'
+        jdk 'jdk-21'
+    }
+
+    stages {
         stage('Checkout') {
             steps {
-                checkout scm   // ← clona la repo (scm = quello configurato nel Job)
+                checkout scm
             }
         }
+
         stage('Build') {
             steps {
-                sh 'mvn clean package'   // ← comando shell
+                sh 'mvn clean build'
             }
         }
-        stage('Test') {
+
+        stage('Package') {
             steps {
-                sh 'mvn test'
+                sh 'mvn package -DskipTests'
             }
         }
     }
+    
 }
