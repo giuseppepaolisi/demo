@@ -7,6 +7,7 @@ pipeline {
     stages {
             stage('Build') {
                 steps {
+                    sh "echo 'Current workspace is $WORKSPACE'"
                     sh 'mvn clean install'
                     sh 'echo "Build successful!"'
                 }
