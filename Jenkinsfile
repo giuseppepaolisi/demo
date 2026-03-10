@@ -19,7 +19,23 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-
+        stage('Print') {
+            steps {
+                script {
+                    sh "echo ${getProjectName}"
+                    sh "echo ${getProjectVersion}"
+                }
+            }
+        }
     }
     
+}
+def getProjectName() {
+    def pom = readMavenPom file: 'pom.xml'
+    return pom.artifactId
+}
+
+def getProjectVersion() {
+    def pom = readMavenPom file: 'pom.xml'
+    return pom.version
 }
