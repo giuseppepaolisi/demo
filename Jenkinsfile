@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'docker-agent'}
 
     tools {
         maven 'maven-3.9.13'
